@@ -12,10 +12,10 @@ export function Footer() {
               <div className="h-8 w-8 bg-primary rounded flex items-center justify-center text-white font-bold">
                 R
               </div>
-              <span className="font-display font-bold text-xl text-white">RMKMATE26</span>
+              <span className="font-display font-bold text-xl text-white">RMKMATE2026</span>
             </div>
             <p className="text-sm leading-relaxed text-slate-400 mb-6">
-              The 2nd International Conference on Smart Cyber Physical Systems brings together leading researchers, engineers, and scientists from around the world.
+              RMKMATE is an international academic conference focused on advancing research and innovation in Artificial Intelligence (AI), Knowledge Management, Intelligent Systems, and Telecommunication Engineering
             </p>
             <div className="flex gap-4">
               <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-primary hover:text-white transition-colors">
@@ -35,7 +35,7 @@ export function Footer() {
             <h3 className="font-display font-semibold text-white text-lg mb-6">Quick Links</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/about" className="hover:text-primary transition-colors">About R.M.K.E.C</Link>
+                <Link href="/about-rmkec" className="hover:text-primary transition-colors">About RMKEC</Link>
               </li>
               <li>
                 <Link href="/committees" className="hover:text-primary transition-colors">Organizing Committee</Link>
@@ -82,20 +82,20 @@ export function Footer() {
             <h3 className="font-display font-semibold text-white text-lg mb-6">Important Dates</h3>
             <ul className="space-y-4 text-sm">
               <li className="flex justify-between items-center border-b border-white/10 pb-2">
-                <span className="text-slate-400">Paper Submission</span>
-                <span className="font-medium text-white">Oct 15, 2025</span>
+                <span className="text-slate-400">Full Paper Submission</span>
+                <span className="font-medium text-white">Feb 1, 2026</span>
               </li>
               <li className="flex justify-between items-center border-b border-white/10 pb-2">
                 <span className="text-slate-400">Acceptance Notification</span>
-                <span className="font-medium text-white">Nov 20, 2025</span>
+                <span className="font-medium text-white">Mar 31, 2026</span>
               </li>
               <li className="flex justify-between items-center border-b border-white/10 pb-2">
-                <span className="text-slate-400">Registration Deadline</span>
-                <span className="font-medium text-white">Dec 10, 2025</span>
+                <span className="text-slate-400">Final Paper Submission</span>
+                <span className="font-medium text-white">Apr 4, 2025</span>
               </li>
               <li className="flex justify-between items-center border-b border-white/10 pb-2">
                 <span className="text-slate-400">Conference Date</span>
-                <span className="text-primary font-bold">Jan 23-24, 2026</span>
+                <span className="text-primary font-bold">Apr 15-16, 2026</span>
               </li>
             </ul>
           </div>

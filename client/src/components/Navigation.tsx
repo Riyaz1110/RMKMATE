@@ -1,31 +1,28 @@
-import { Link, useLocation } from "wouter";
-import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "wouter"
+import { cn } from "@/lib/utils"
+import { useState, useEffect } from "react"
+import { Menu, X, ChevronDown } from "lucide-react"
 
 export function Navigation() {
-  const [location] = useLocation();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [location] = useLocation()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
+  /* ✅ About removed from here (will place manually after Venue) */
   const links = [
     { href: "/", label: "Home" },
     { href: "/committees", label: "Committees" },
     { href: "/speakers", label: "Speakers" },
     { href: "/papers", label: "Paper Submission" },
     { href: "/schedule", label: "Schedule" },
-    { href: "/venue", label: "Venue" },
     { href: "/contact", label: "Contact Us" },
-  ];
+  ]
 
   return (
     <nav
@@ -37,48 +34,94 @@ export function Navigation() {
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+
+        {/* ================= LOGO ================= */}
         <Link href="/">
           <div className="flex items-center gap-3 cursor-pointer group">
-            {/* Logo placeholder - using text/icon if no image available */}
             <div className="h-10 w-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-105 transition-transform">
               R
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-lg leading-none text-foreground group-hover:text-primary transition-colors">
+              <span className="font-display font-bold text-lg group-hover:text-primary">
                 RMKMATE26
               </span>
-              <span className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">
                 IEEE Conference
               </span>
             </div>
           </div>
         </Link>
 
-        {/* Desktop Menu */}
+
+        {/* ================= DESKTOP MENU ================= */}
         <div className="hidden lg:flex items-center gap-1">
+
+          {/* NORMAL LINKS */}
           {links.map((link) => (
             <Link key={link.href} href={link.href}>
               <div
                 className={cn(
-                  "px-4 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer relative",
+                  "px-4 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer",
                   location === link.href
                     ? "text-primary bg-primary/5"
                     : "text-muted-foreground hover:text-primary hover:bg-secondary/50"
                 )}
               >
                 {link.label}
-                {location === link.href && (
-                  <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-primary rounded-full" />
-                )}
               </div>
             </Link>
           ))}
-          <Button className="ml-4 bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25">
-            Register Now
-          </Button>
+
+          {/* ================= VENUE DROPDOWN ================= */}
+          <div className="relative group">
+            <div className="px-4 py-2 text-sm font-medium rounded-md cursor-pointer text-muted-foreground hover:text-primary hover:bg-secondary/50 flex items-center gap-1">
+              Venue
+              <ChevronDown size={16} />
+            </div>
+
+            <div
+              className="
+                absolute left-0 top-full mt-2
+                bg-white border shadow-xl rounded-xl
+                opacity-0 invisible
+                group-hover:opacity-100 group-hover:visible
+                transition-all duration-200
+                min-w-[200px]
+                z-50
+              "
+            >
+              <Link href="/venue">
+                <div className="px-5 py-3 hover:bg-slate-100 rounded-t-xl cursor-pointer">
+                  Conference Venue
+                </div>
+              </Link>
+
+              <Link href="/transportation">
+                <div className="px-5 py-3 hover:bg-slate-100 rounded-b-xl cursor-pointer">
+                  Transportation
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          {/* ================= ABOUT RMKEC (AFTER VENUE) ================= */}
+          <Link href="/about-rmkec">
+            <div
+              className={cn(
+                "px-4 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer",
+                location === "/about-rmkec"
+                  ? "text-primary bg-primary/5"
+                  : "text-muted-foreground hover:text-primary hover:bg-secondary/50"
+              )}
+            >
+              About RMKEC
+            </div>
+          </Link>
+
         </div>
 
-        {/* Mobile Toggle */}
+
+        {/* ================= MOBILE TOGGLE ================= */}
         <button
           className="lg:hidden p-2 text-foreground hover:bg-secondary rounded-md"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -87,30 +130,54 @@ export function Navigation() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+
+      {/* ================= MOBILE MENU ================= */}
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 w-full bg-background border-b shadow-xl animate-in slide-in-from-top-5 duration-200">
           <div className="flex flex-col p-4 gap-2">
+
             {links.map((link) => (
               <Link key={link.href} href={link.href}>
                 <div
-                  className={cn(
-                    "px-4 py-3 text-sm font-medium rounded-lg transition-colors cursor-pointer",
-                    location === link.href
-                      ? "text-primary bg-primary/5 font-semibold"
-                      : "text-foreground hover:bg-secondary"
-                  )}
+                  className="px-4 py-3 rounded-lg hover:bg-secondary cursor-pointer"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </div>
               </Link>
             ))}
-            <div className="h-px bg-border my-2" />
-            <Button className="w-full">Register Now</Button>
+
+            <Link href="/venue">
+              <div
+                className="px-4 py-3 rounded-lg hover:bg-secondary cursor-pointer"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Conference Venue
+              </div>
+            </Link>
+
+            <Link href="/transportation">
+              <div
+                className="px-4 py-3 rounded-lg hover:bg-secondary cursor-pointer"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Transportation
+              </div>
+            </Link>
+
+            {/* ABOUT RMKEC for mobile */}
+            <Link href="/about-rmkec">
+              <div
+                className="px-4 py-3 rounded-lg hover:bg-secondary cursor-pointer"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                About RMKEC
+              </div>
+            </Link>
+
           </div>
         </div>
       )}
     </nav>
-  );
+  )
 }

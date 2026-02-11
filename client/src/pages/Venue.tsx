@@ -1,87 +1,163 @@
-import { SectionHeader } from "@/components/SectionHeader";
-import { Card } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Globe } from "lucide-react";
+import { useEffect, useState } from "react"
+import { SectionHeader } from "@/components/SectionHeader"
+import { Card } from "@/components/ui/card"
+
+import rmk1 from "@/assets/backgroundpo.png"
+import rmk2 from "@/assets/marina.png"
+import rmk3 from "@/assets/mahabalipuram.png"
+
+import marina from "@/assets/marina.png"
+import temple from "@/assets/kapaleeshwarar.png"
+import mahabalipuram from "@/assets/mahabalipuram.png"
+import fort from "@/assets/fortstgeorge.png"
+import mall from "@/assets/expressavenue.png"
 
 export default function Venue() {
+
+  /* ================= AUTO IMAGE SLIDER ================= */
+  const images = [rmk1, rmk2, rmk3]
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
-    <div className="min-h-screen bg-white pt-24 pb-20">
-      <div className="container mx-auto px-4 md:px-6">
-        <SectionHeader title="Venue & Location" subtitle="R.M.K. Engineering College" />
+    <div className="min-h-screen bg-slate-50 pt-24 pb-20">
 
-        <div className="max-w-6xl mx-auto">
-          {/* Main Venue Info */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-            <div>
-              <div className="bg-slate-100 rounded-2xl overflow-hidden shadow-inner h-[400px]">
-                {/* Embedded Google Map */}
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3880.866579045763!2d80.14159531482613!3d13.35879799060269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a527f0d0469094b%3A0x6e761f9d458097d7!2sR.M.K.%20Engineering%20College!5e0!3m2!1sen!2sin!4v1645000000000!5m2!1sen!2sin" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen 
-                  loading="lazy"
-                  className="w-full h-full"
-                ></iframe>
-              </div>
-            </div>
+      <div className="container mx-auto px-6 space-y-20">
 
-            <div className="flex flex-col justify-center">
-              <h3 className="font-display font-bold text-2xl mb-4 text-primary">About the Institution</h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                R.M.K. Engineering College, established in the year 1995, is situated at Kavaraipettai, Gummidipoondi Taluk, Thiruvallur District, Tamil Nadu. The college is affiliated to Anna University, Chennai and is accredited by NBA and NAAC with A+ Grade.
-              </p>
-              
-              <div className="space-y-4 mt-4">
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="bg-white p-2 rounded-full shadow-sm text-primary">
-                    <MapPin size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900">Address</h4>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      RSM Nagar, Kavaraipettai, Gummidipoondi Taluk, Thiruvallur District, Tamil Nadu - 601 206.
-                    </p>
-                  </div>
-                </div>
+        {/* ================================================= */}
+        {/* ================= RMK COLLEGE =================== */}
+        {/* ================================================= */}
 
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
-                  <div className="bg-white p-2 rounded-full shadow-sm text-primary">
-                    <Globe size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900">How to Reach</h4>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      The college is located on the NH-16 (Chennai-Kolkata Highway), about 30 km from Chennai. It is well connected by road and rail transport.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <SectionHeader
+          title="Venue"
+          subtitle="R.M.K. Engineering College, Chennai"
+        />
 
-          {/* Accommodation (Optional section) */}
-          <div className="mb-12">
-            <h3 className="font-display font-bold text-2xl mb-6 border-l-4 border-primary pl-4">Accommodation</h3>
-            <p className="text-muted-foreground mb-6">
-              Limited accommodation is available in the college hostel on a payment basis. Several hotels are also available in nearby towns.
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+          {/* Text */}
+          <div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
+            <p>
+              R.M.K. Engineering College, established in 1995, is one of the
+              premier institutions affiliated to Anna University, Chennai.
+              Accredited by NAAC with A+ Grade and NBA, the college is known for
+              excellence in academics, placements, and research innovation.
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                "College Hostel",
-                "Grand Hotel Chennai",
-                "Highway Inn"
-              ].map((place, i) => (
-                <Card key={i} className="p-6">
-                  <h4 className="font-bold mb-2">{place}</h4>
-                  <p className="text-sm text-muted-foreground">Contact conference organizers for booking assistance.</p>
-                </Card>
-              ))}
-            </div>
+
+            <p>
+              The campus provides world-class infrastructure including modern
+              laboratories, smart classrooms, hostels, sports facilities and
+              industry collaborations. It is located near NH-16 and easily
+              accessible from all parts of Chennai.
+            </p>
+
+            <p>
+              The conference RMKMATE 2026 will be hosted in this vibrant
+              academic environment, providing an ideal setting for research,
+              networking and innovation.
+            </p>
           </div>
+
+          {/* Auto Slider */}
+          <div className="rounded-3xl overflow-hidden shadow-2xl h-[420px]">
+            <img
+              src={images[index]}
+              className="w-full h-full object-cover transition-all duration-700"
+            />
+          </div>
+
         </div>
+
+
+        {/* ================================================= */}
+        {/* ============= HIGHLIGHTS OF CHENNAI ============== */}
+        {/* ================================================= */}
+
+        <div className="bg-primary text-white py-6 px-8 rounded-2xl shadow-xl">
+          <h2 className="text-3xl font-bold">Highlights of Chennai</h2>
+        </div>
+
+
+        {/* ===== Highlight 1 ===== */}
+        <Highlight
+          title="Marina Beach"
+          img={marina}
+          desc="The second longest urban beach in the world. A perfect place to enjoy sunrise, sea breeze and local street food."
+        />
+
+        {/* ===== Highlight 2 ===== */}
+        <Highlight
+          title="Kapaleeshwarar Temple"
+          img={temple}
+          reverse
+          desc="A historic Dravidian temple dedicated to Lord Shiva. Known for its colorful gopuram and rich cultural heritage."
+        />
+
+        {/* ===== Highlight 3 ===== */}
+        <Highlight
+          title="Mahabalipuram"
+          img={mahabalipuram}
+          desc="UNESCO World Heritage Site famous for stone carvings, shore temples and ancient monuments."
+        />
+
+        {/* ===== Highlight 4 ===== */}
+        <Highlight
+          title="Fort St. George"
+          img={fort}
+          reverse
+          desc="The first English fortress in India built in 1644. It now houses a museum and the Tamil Nadu Legislative Assembly."
+        />
+
+        {/* ===== Highlight 5 ===== */}
+        <Highlight
+          title="Express Avenue Mall"
+          img={mall}
+          desc="One of the largest shopping malls in Chennai with shopping, dining and entertainment options for visitors."
+        />
+
       </div>
     </div>
-  );
+  )
+}
+
+
+/* ================================================= */
+/* ========= REUSABLE HIGHLIGHT COMPONENT =========== */
+/* ================================================= */
+
+function Highlight({ title, desc, img, reverse = false }: any) {
+  return (
+    <Card className="p-10 rounded-3xl shadow-xl border-0 bg-white">
+
+      <div className={`grid lg:grid-cols-2 gap-12 items-center ${reverse ? "lg:flex-row-reverse" : ""}`}>
+
+        {!reverse && (
+          <img
+            src={img}
+            className="rounded-2xl shadow-lg h-[350px] w-full object-cover"
+          />
+        )}
+
+        <div>
+          <h3 className="text-2xl font-bold text-primary mb-4">{title}</h3>
+          <p className="text-muted-foreground leading-relaxed text-lg">{desc}</p>
+        </div>
+
+        {reverse && (
+          <img
+            src={img}
+            className="rounded-2xl shadow-lg h-[350px] w-full object-cover"
+          />
+        )}
+
+      </div>
+
+    </Card>
+  )
 }

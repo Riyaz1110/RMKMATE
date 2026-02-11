@@ -1,42 +1,49 @@
-import { db } from "./db";
-import { speakers, committeeMembers, schedules, type Speaker, type InsertSpeaker, type CommitteeMember, type InsertCommitteeMember, type Schedule, type InsertSchedule } from "@shared/schema";
-
-export interface IStorage {
-  getSpeakers(): Promise<Speaker[]>;
-  createSpeaker(speaker: InsertSpeaker): Promise<Speaker>;
-  getCommitteeMembers(): Promise<CommitteeMember[]>;
-  createCommitteeMember(member: InsertCommitteeMember): Promise<CommitteeMember>;
-  getSchedules(): Promise<Schedule[]>;
-  createSchedule(schedule: InsertSchedule): Promise<Schedule>;
+type Speaker = {
+  id: number
+  name: string
+  topic: string
 }
 
-export class DatabaseStorage implements IStorage {
-  async getSpeakers(): Promise<Speaker[]> {
-    return await db.select().from(speakers);
+type CommitteeMember = {
+  id: number
+  name: string
+  role: string
+}
+
+class Storage {
+  private speakers: Speaker[] = []
+  private committee: CommitteeMember[] = []
+
+  private speakerId = 1
+  private committeeId = 1
+
+  async getSpeakers() {
+    return this.speakers
   }
 
-  async createSpeaker(insertSpeaker: InsertSpeaker): Promise<Speaker> {
-    const [speaker] = await db.insert(speakers).values(insertSpeaker).returning();
-    return speaker;
+  async createSpeaker(data: any) {
+    const speaker = { id: this.speakerId++, ...data }
+    this.speakers.push(speaker)
+    return speaker
   }
 
-  async getCommitteeMembers(): Promise<CommitteeMember[]> {
-    return await db.select().from(committeeMembers);
+  async getCommitteeMembers() {
+    return this.committee
   }
 
-  async createCommitteeMember(insertMember: InsertCommitteeMember): Promise<CommitteeMember> {
-    const [member] = await db.insert(committeeMembers).values(insertMember).returning();
-    return member;
+  async createCommitteeMember(data: any) {
+    const member = { id: this.committeeId++, ...data }
+    this.committee.push(member)
+    return member
   }
 
-  async getSchedules(): Promise<Schedule[]> {
-    return await db.select().from(schedules);
+  async deleteSpeaker(id: number) {
+    this.speakers = this.speakers.filter(s => s.id !== id)
   }
 
-  async createSchedule(insertSchedule: InsertSchedule): Promise<Schedule> {
-    const [schedule] = await db.insert(schedules).values(insertSchedule).returning();
-    return schedule;
+  async deleteCommitteeMember(id: number) {
+    this.committee = this.committee.filter(c => c.id !== id)
   }
 }
 
-export const storage = new DatabaseStorage();
+export const storage = new Storage()

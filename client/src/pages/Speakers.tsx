@@ -1,107 +1,163 @@
-import { useSpeakers } from "@/hooks/use-conference";
-import { SectionHeader } from "@/components/SectionHeader";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
+import { SectionHeader } from "@/components/SectionHeader"
+import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+
+/* ========= IMPORT IMAGES ========= */
+
+import peer from "@/assets/peer.png"
+import ribas from "@/assets/ribas.png"
+import han from "@/assets/han.png"
+
+import kendall from "@/assets/kendall.png"
+import yoon from "@/assets/yoon.png"
+import gokila from "@/assets/gokila.png"
+
+import happo from "@/assets/happo.png"
+import pek from "@/assets/pek.png"
+import daniel from "@/assets/daniel.png"
+
+/* ================================= */
+
+const speakers = [
+  {
+    name: "Prof. Dr. Peter Peer",
+    role: "Executive Editor – ICT Express",
+    affiliation: "University of Ljubljana, Slovenia",
+    image: peer,
+    bio: "Head of the Computer Vision Laboratory with extensive research contributions in AI and Image Processing."
+  },
+  {
+    name: "Prof. Guillem Alenya Ribas",
+    role: "Director",
+    affiliation: "Institut de Robòtica i Informàtica Industrial, Spain",
+    image: ribas,
+    bio: "Joint centre of the Spanish Scientific Research Council (CSIC) and Polytechnic University of Catalonia."
+  },
+  {
+    name: "Prof. Dong Seog HAN",
+    role: "Co-Editor-in-Chief – ICT Express",
+    affiliation: "Kyungpook National University, South Korea",
+    image: han,
+    bio: "Head of Intelligent Signal Processing Laboratory and expert in communication systems."
+  },
+  {
+    name: "Professor Dr. Graham Kendall",
+    role: "Former Editor-in-Chief – IEEE Transactions",
+    affiliation: "Malaysia",
+    image: kendall,
+    bio: "Research leader in computational intelligence and AI applications."
+  },
+  {
+    name: "Prof. Sangwon Yoon",
+    role: "Professor",
+    affiliation: "State University of New York, USA",
+    image: yoon,
+    bio: "Department of Systems & Industrial Engineering with strong academic research portfolio."
+  },
+  {
+    name: "Dr. Gokila Durai",
+    role: "Associate Professor",
+    affiliation: "Augusta University, USA",
+    image: gokila,
+    bio: "Expert in Computer & Cyber Sciences and emerging technologies."
+  },
+  {
+    name: "Dr. Ari Happonen",
+    role: "Associate Professor",
+    affiliation: "LUT University, Finland",
+    image: happo,
+    bio: "Researcher in digital transformation and industrial engineering."
+  },
+  {
+    name: "Dr PEK Chuen Khee",
+    role: "Head of School – Management & Marketing",
+    affiliation: "Taylor’s University, Malaysia",
+    image: pek,
+    bio: "Academic leader with focus on management and business technologies."
+  },
+  {
+    name: "Dr. Daniel Chandran",
+    role: "Professor",
+    affiliation: "University of Technology Sydney, Australia",
+    image: daniel,
+    bio: "Faculty of Engineering and leadership in systems and management research."
+  }
+]
 
 export default function Speakers() {
-  const { data: speakers, isLoading, error } = useSpeakers();
-
-  if (isLoading) {
-    return (
-      <div className="container mx-auto px-4 py-20">
-        <SectionHeader title="Keynote Speakers" subtitle="Distinguished Experts" />
-        <div className="space-y-8">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="flex flex-col md:flex-row gap-8 bg-white p-6 rounded-2xl shadow-sm border">
-              <Skeleton className="w-full md:w-64 h-64 rounded-xl" />
-              <div className="flex-1 py-4 space-y-4">
-                <Skeleton className="h-8 w-1/2" />
-                <Skeleton className="h-4 w-3/4" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-20 w-full" />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="container mx-auto px-4 py-20 text-center">
-        <h2 className="text-2xl font-bold text-red-500">Failed to load speakers</h2>
-        <p className="text-muted-foreground mt-2">Please try again later.</p>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-20">
-      <div className="container mx-auto px-4 md:px-6">
-        <SectionHeader 
-          title="Keynote Speakers" 
-          subtitle="Distinguished Experts" 
-          className="mb-16"
+
+      <div className="container mx-auto px-6">
+
+        <SectionHeader
+          title="Keynote Speakers"
+          subtitle="Distinguished International Experts"
         />
 
-        <div className="space-y-12 max-w-5xl mx-auto">
-          {speakers && speakers.length > 0 ? (
-            speakers.map((speaker, idx) => (
-              <motion.div 
-                key={speaker.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-              >
-                <Card className="overflow-hidden border-none shadow-xl hover:shadow-2xl transition-shadow bg-white rounded-3xl">
-                  <div className="flex flex-col md:flex-row">
-                    {/* Image Column */}
-                    <div className="md:w-1/3 lg:w-1/4 relative group">
-                      <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10" />
-                      <img 
-                        src={speaker.imageUrl || "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop"} 
-                        alt={speaker.name}
-                        className="w-full h-full object-cover min-h-[300px] md:min-h-full"
-                      />
-                    </div>
+        <div className="space-y-10 max-w-6xl mx-auto">
 
-                    {/* Content Column */}
-                    <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
-                      <div className="mb-4">
-                        <Badge variant="secondary" className="mb-3 text-primary bg-primary/10 hover:bg-primary/20">
-                          Keynote Speaker
-                        </Badge>
-                        <h3 className="font-display font-bold text-3xl text-slate-900 mb-1">
-                          {speaker.name}
-                        </h3>
-                        <p className="text-lg font-medium text-primary mb-1">{speaker.role}</p>
-                        <p className="text-muted-foreground italic">{speaker.affiliation}</p>
-                      </div>
+          {speakers.map((sp) => (
+            <Card
+              key={sp.name}
+              className="
+              relative overflow-hidden
+              rounded-3xl
+              bg-white
+              border border-slate-200
+              shadow-lg
+              hover:shadow-2xl
+              hover:-translate-y-1
+              transition-all duration-300
+              group
+            "
+            >
 
-                      <div className="w-16 h-1 bg-accent rounded-full mb-6" />
+              <div className="flex flex-col md:flex-row">
 
-                      <div className="prose prose-slate max-w-none text-muted-foreground">
-                        <p className="leading-relaxed">
-                          {speaker.bio || "An expert in Cyber Physical Systems with over 20 years of research experience. They have published numerous papers in top-tier conferences and journals."}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))
-          ) : (
-            <div className="text-center py-20 bg-white rounded-2xl border border-dashed">
-              <p className="text-muted-foreground">Speaker details will be announced soon.</p>
-            </div>
-          )}
+                {/* IMAGE LEFT */}
+                <div className="md:w-72 w-full overflow-hidden">
+                <img
+                  src={sp.image}
+                  alt={sp.name}
+                  className="w-full h-full object-cover min-h-[260px] group-hover:scale-105 transition duration-500"
+                />
+              </div>
+
+
+                {/* CONTENT RIGHT */}
+                <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
+
+                  <Badge className="mb-4 bg-primary/10 text-primary w-fit">
+                    Keynote Speaker
+                  </Badge>
+
+                  <h3 className="text-3xl font-bold text-slate-900 mb-1">
+                    {sp.name}
+                  </h3>
+
+                  <p className="text-lg font-semibold text-primary">
+                    {sp.role}
+                  </p>
+
+                  <p className="text-muted-foreground italic mb-4">
+                    {sp.affiliation}
+                  </p>
+
+                  <div className="w-14 h-1 bg-primary rounded mb-4" />
+
+                  <p className="text-muted-foreground leading-relaxed">
+                    {sp.bio}
+                  </p>
+                </div>
+
+              </div>
+            </Card>
+          ))}
+
         </div>
+
       </div>
     </div>
-  );
+  )
 }

@@ -13,8 +13,10 @@ import Speakers from "@/pages/Speakers";
 import Committees from "@/pages/Committees";
 import Schedule from "@/pages/Schedule";
 import Venue from "@/pages/Venue";
+import Transportation from "@/pages/Transportation";
 import Contact from "@/pages/Contact";
 import PaperSubmission from "@/pages/PaperSubmission";
+import AboutRMKEC from "@/pages/AboutRMKEC"
 
 function Router() {
   return (
@@ -27,6 +29,9 @@ function Router() {
           <Route path="/committees" component={Committees} />
           <Route path="/schedule" component={Schedule} />
           <Route path="/venue" component={Venue} />
+          <Route path="/transportation" component={Transportation} />
+          <Route path="/about-rmkec" component={AboutRMKEC} />
+
           <Route path="/contact" component={Contact} />
           <Route path="/papers" component={PaperSubmission} />
           <Route component={NotFound} />
