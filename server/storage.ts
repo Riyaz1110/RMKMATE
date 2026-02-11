@@ -1,38 +1,42 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { speakers, committeeMembers, schedules, type Speaker, type InsertSpeaker, type CommitteeMember, type InsertCommitteeMember, type Schedule, type InsertSchedule } from "@shared/schema";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getSpeakers(): Promise<Speaker[]>;
+  createSpeaker(speaker: InsertSpeaker): Promise<Speaker>;
+  getCommitteeMembers(): Promise<CommitteeMember[]>;
+  createCommitteeMember(member: InsertCommitteeMember): Promise<CommitteeMember>;
+  getSchedules(): Promise<Schedule[]>;
+  createSchedule(schedule: InsertSchedule): Promise<Schedule>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async getSpeakers(): Promise<Speaker[]> {
+    return await db.select().from(speakers);
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async createSpeaker(insertSpeaker: InsertSpeaker): Promise<Speaker> {
+    const [speaker] = await db.insert(speakers).values(insertSpeaker).returning();
+    return speaker;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async getCommitteeMembers(): Promise<CommitteeMember[]> {
+    return await db.select().from(committeeMembers);
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async createCommitteeMember(insertMember: InsertCommitteeMember): Promise<CommitteeMember> {
+    const [member] = await db.insert(committeeMembers).values(insertMember).returning();
+    return member;
+  }
+
+  async getSchedules(): Promise<Schedule[]> {
+    return await db.select().from(schedules);
+  }
+
+  async createSchedule(insertSchedule: InsertSchedule): Promise<Schedule> {
+    const [schedule] = await db.insert(schedules).values(insertSchedule).returning();
+    return schedule;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
