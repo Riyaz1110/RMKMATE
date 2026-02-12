@@ -9,6 +9,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -31,22 +32,40 @@ export default function Contact() {
     },
   });
 
-  function onSubmit(data: ContactFormValues) {
-    console.log(data);
-    // Simulate API call
-    setTimeout(() => {
-      toast({
-        title: "Message Sent",
-        description: "Thank you for contacting us. We will get back to you soon.",
-      });
-      form.reset();
-    }, 1000);
+  async function onSubmit(data: ContactFormValues) {
+  try {
+    await emailjs.send(
+      "service_tcxyabi",      // your service id
+      "template_0z2sdhh",    // your template id
+      {
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+      },
+      "hct1Kxi_tI90nPhCl"      // your public key
+    );
+
+    toast({
+      title: "Message Sent",
+      description: "Email sent successfully!",
+    });
+
+    form.reset();
+  } catch (error) {
+    toast({
+      title: "Error",
+      description: "Failed to send email",
+      variant: "destructive",
+    });
   }
+}
+
 
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-20">
       <div className="container mx-auto px-4 md:px-6">
-        <SectionHeader title="Contact Us" subtitle="Get In Touch" />
+        <SectionHeader title="Contact Us"/>
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Info */}
@@ -63,9 +82,13 @@ export default function Contact() {
                   <div>
                     <h4 className="font-bold mb-1">Address</h4>
                     <p className="text-primary-foreground/80 text-sm leading-relaxed">
-                      Department of Computer Science,<br />
-                      R.M.K. Engineering College,<br />
-                      RSM Nagar, Kavaraipettai - 601 206.
+                      RSM Nagar,
+                      Kavaraipettai,
+                      Gummidipoondi Taluk,
+                      Tiruvallur District,
+                      Tamil Nadu,
+                      India.
+                      Pin code: 601 206.
                     </p>
                   </div>
                 </div>
@@ -74,7 +97,7 @@ export default function Contact() {
                   <Phone className="shrink-0" />
                   <div>
                     <h4 className="font-bold mb-1">Phone</h4>
-                    <p className="text-primary-foreground/80 text-sm">+91 12345 67890</p>
+                    <p className="text-primary-foreground/80 text-sm"> 044 – 6790 6790 Fax : 044 – 6790 6791 </p>
                   </div>
                 </div>
 
@@ -82,7 +105,7 @@ export default function Contact() {
                   <Mail className="shrink-0" />
                   <div>
                     <h4 className="font-bold mb-1">Email</h4>
-                    <p className="text-primary-foreground/80 text-sm">contact@rmkmate26.com</p>
+                    <p className="text-primary-foreground/80 text-sm">rmkmate@rmkec.ac.in</p>
                   </div>
                 </div>
               </div>
@@ -90,9 +113,10 @@ export default function Contact() {
             
             <div className="bg-white p-8 rounded-2xl border shadow-sm">
               <h3 className="font-display font-bold text-xl mb-4 text-slate-900">Conference Coordinator</h3>
-              <p className="font-medium text-primary">Dr. Name Placeholder</p>
-              <p className="text-sm text-muted-foreground mb-4">Head of Department, CSE</p>
-              <p className="text-sm">Phone: +91 98765 43210</p>
+              <p className="font-medium text-primary">Dr.D.Paulraj</p>
+              <p className="text-sm text-muted-foreground mb-4">Conference Chair</p>
+              <p className="text-sm">Phone: +91 8248687752</p>
+              <p className="text-sm">EMail : rmkmate@rmkec.ac.in</p>
             </div>
           </div>
 

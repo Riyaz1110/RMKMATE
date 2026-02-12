@@ -15,7 +15,7 @@ export function Footer() {
               <span className="font-display font-bold text-xl text-white">RMKMATE2026</span>
             </div>
             <p className="text-sm leading-relaxed text-slate-400 mb-6">
-              RMKMATE is an international academic conference focused on advancing research and innovation in Artificial Intelligence (AI), Knowledge Management, Intelligent Systems, and Telecommunication Engineering
+              RMKMATE is an international academic conference dedicated to advancing research, innovation, and collaboration in the fields of Artificial Intelligence (AI), Knowledge Management, Intelligent Systems, and Telecommunication Engineering.
             </p>
             <div className="flex gap-4">
               <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-primary hover:text-white transition-colors">
@@ -66,13 +66,18 @@ export function Footer() {
                   Tamil Nadu, India.
                 </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="text-primary shrink-0" size={18} />
-                <span>+91 12345 67890</span>
+              <li className="flex gap-3">
+                <Phone className="text-primary shrink-0 mt-1" size={18} />
+
+                <div className="flex flex-col">
+                  <span>044 – 6790 6790</span>
+                  <span>Fax: 044 – 6790 6791</span>
+                </div>
               </li>
+
               <li className="flex items-center gap-3">
                 <Mail className="text-primary shrink-0" size={18} />
-                <span>contact@rmkmate26.com</span>
+                <span>rmkmate@rmkec.ac.in</span>
               </li>
             </ul>
           </div>
@@ -100,8 +105,9 @@ export function Footer() {
             </ul>
           </div>
         </div>
+
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <p>© 2025 RMKMATE26. All rights reserved.</p>
+          <p>© 2026 RMKMATE26. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms & Conditions</a>

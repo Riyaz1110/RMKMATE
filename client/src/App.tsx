@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import NotFound from "@/pages/not-found";
+import ScrollToTop from "@/components/ScroolToTop";
 
 // Pages
 import Home from "@/pages/Home";
@@ -21,6 +22,7 @@ import AboutRMKEC from "@/pages/AboutRMKEC"
 function Router() {
   return (
     <div className="flex flex-col min-h-screen">
+      <ScrollToTop />
       <Navigation />
       <main className="flex-grow">
         <Switch>
@@ -34,6 +36,7 @@ function Router() {
 
           <Route path="/contact" component={Contact} />
           <Route path="/papers" component={PaperSubmission} />
+          <Route path="/paper-submission" component={PaperSubmission} />
           <Route component={NotFound} />
         </Switch>
       </main>

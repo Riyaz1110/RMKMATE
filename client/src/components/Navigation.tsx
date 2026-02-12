@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter"
 import { cn } from "@/lib/utils"
 import { useState, useEffect } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
+import logo from "@/assets/logo.png";
 
 export function Navigation() {
   const [location] = useLocation()
@@ -38,9 +39,12 @@ export function Navigation() {
         {/* ================= LOGO ================= */}
         <Link href="/">
           <div className="flex items-center gap-3 cursor-pointer group">
-            <div className="h-10 w-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-105 transition-transform">
-              R
-            </div>
+            <img
+              src={logo}
+              alt="RMKMATE26 Logo"
+              className="h-10 w-10 object-contain group-hover:scale-105 transition-transform"
+            />
+
             <div className="flex flex-col">
               <span className="font-display font-bold text-lg group-hover:text-primary">
                 RMKMATE26
