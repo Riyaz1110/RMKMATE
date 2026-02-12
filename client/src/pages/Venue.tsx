@@ -8,7 +8,7 @@ import rmk3 from "@/assets/rmk3.png"
 
 import marina from "@/assets/marina.png"
 import temple from "@/assets/kapaleeshwarar.png"
-import mahabalipuram from "@/assets/mahabalipuram.png"
+import mahabalipuram from "@/assets/Mahabalipuram.png"
 import fort from "@/assets/fortstgeorge.png"
 import mall from "@/assets/expressavenue.png"
 
