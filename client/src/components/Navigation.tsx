@@ -47,7 +47,7 @@ export function Navigation() {
 
             <div className="flex flex-col">
               <span className="font-display font-bold text-lg group-hover:text-primary">
-                RMKMATE26
+                RMKMATE2026
               </span>
               <span className="text-xs text-muted-foreground uppercase tracking-wider">
                 IEEE Conference
