@@ -3,8 +3,8 @@ import { ArrowRight, Calendar, MapPin, Users, Award, FileText } from "lucide-rea
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { SectionHeader } from "@/components/SectionHeader";
-import heroImage from "@assets/rmkbanner.png";
-import poster from "@assets/backgroundpo.png";
+import heroImage from "@/assets/rmkbanner.png";
+import poster from "@/assets/backgroundpo.png"
 // Placeholder for banner since the uploaded one might not fit perfectly everywhere
 const bgPattern = "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop";
 
