@@ -36,7 +36,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/70 z-10" />
           <img 
-            src={poster} 
+            src={bgPattern} 
             alt="Conference Hall" 
             className="w-full h-full object-cover"
           />

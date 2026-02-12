@@ -100,7 +100,6 @@ export function Footer() {
             </ul>
           </div>
         </div>
-
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
           <p>© 2025 RMKMATE26. All rights reserved.</p>
           <div className="flex gap-6">

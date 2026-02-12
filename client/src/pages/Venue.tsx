@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import { SectionHeader } from "@/components/SectionHeader"
 import { Card } from "@/components/ui/card"
 
-import rmk1 from "@/assets/backgroundpo.png"
-import rmk2 from "@/assets/marina.png"
-import rmk3 from "@/assets/mahabalipuram.png"
+import rmk1 from "@/assets/rmk1.png"
+import rmk2 from "@/assets/rmk2.png"
+import rmk3 from "@/assets/rmk3.png"
 
 import marina from "@/assets/marina.png"
 import temple from "@/assets/kapaleeshwarar.png"
